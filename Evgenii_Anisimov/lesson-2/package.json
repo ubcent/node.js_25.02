@@ -1,0 +1,16 @@
+{
+  "name": "dz-2",
+  "version": "1.0.0",
+  "description": "dz-2",
+  "main": "dz-2.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ansi-styles": "^3.2.1",
+    "beepbeep": "^1.2.2"
+  }
+}
