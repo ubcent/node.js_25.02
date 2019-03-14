@@ -1,0 +1,19 @@
+{
+  "name": "medvedev",
+  "version": "1.0.0",
+  "description": "some console games))",
+  "main": "index.js",
+  "scripts": {
+    "ht": "node ./games/headsortails",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "alex150rus"
+  },
+  "author": "AlexMedvedev",
+  "license": "ISC",
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}

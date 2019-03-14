@@ -1,0 +1,4 @@
+Hello!
+
+to start the game "Head or tail" just print in your terminal: 
+npm run ht.
