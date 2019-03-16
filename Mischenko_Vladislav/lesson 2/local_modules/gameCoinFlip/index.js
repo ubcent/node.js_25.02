@@ -5,7 +5,7 @@ const lineReader = require('line-reader');
 
 const LOG_FILE_NAME = './local_modules/gameCoinFlip/log.txt';
 
-class  Game {
+class Game {
     constructor() {
         this.machineCoin = Math.floor(Math.random() * 2).toString();
         this.userCoin = '0';
@@ -47,7 +47,7 @@ class  Game {
                 case '0':
                     this.userCoin = line;
                     this.revealWinner();
-                    console.log('Your try %s. Coin was %s. Winner is %s. \n', this.userCoin, this.machineCoin ,this.winner);
+                    console.log('Your try %s. Coin was %s. Winner is %s. \n', this.userCoin, this.machineCoin, this.winner);
                     this.shuffleGame();
                     console.log('Try to guess coin orientation (0/1/q)? '.blue);
                     break;
@@ -73,12 +73,12 @@ class  Game {
         const flip = {
             u: this.userCoin,
             m: this.machineCoin,
-            w: w
+            w: w,
         };
 
         const data = JSON.stringify(flip);
         fs.appendFile(LOG_FILE_NAME, data + '\n', (err) => {
-            if(err) throw err;
+            if (err) throw err;
         });
     }
 
@@ -92,17 +92,17 @@ class  Game {
         lineReader.eachLine(LOG_FILE_NAME, (line, last) => {
             const flip = JSON.parse(line);
 
-            if(flip.w === 'u') {
+            if (flip.w === 'u') {
                 winnerCounter++;
             }
             totalCounter++;
 
-            if(last){
-                const winrate = parseFloat(winnerCounter*100/totalCounter).toFixed(2);
+            if (last) {
+                const winrate = parseFloat(winnerCounter * 100 / totalCounter).toFixed(2);
                 console.log('Your won %s times at %s flips. Your winrate is %s%!', winnerCounter, totalCounter, winrate);
 
                 fs.unlink(LOG_FILE_NAME, (err) => {
-                    if(err) throw err;
+                    if (err) throw err;
                 });
             }
         });
