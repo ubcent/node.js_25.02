@@ -1,4 +1,5 @@
 const readline = require('readline');
+const chalk = require('chalk');
 const fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2), {
     alias: {
@@ -13,43 +14,39 @@ const rl = readline.createInterface({
 });
 
 if (argv.help) {
-  console.log('Параметры запуска: --start / --s');
+  rl.write(
+  `Запустить игру Блэкджек: 
+  - npm start
+  - node index.js --start / -s`);
   process.exit();
 }
 
 if (argv.start) {
 
-  function getStatus() {
-    return ('Дилер: ' + dealer.join('') + ' Игрок: ' + player.join(''));
-  }
-
   let dealer = [getCard()];
   let player = [getCard(), getCard()];
       
   if (getSum(player) == 21) {
-    console.log('Black Jack на раздаче! $_$');
-    rl.close();
+    log('Black Jack на раздаче!','1:0');
   } else {
-    console.log('Текущая сумма карт у игрока: ' + getSum(player));
-    console.log(getStatus() + ' Хотите ещё карту? y - Да, n - нет');
+    console.log(getStatus());
+    console.log(chalk.green('Хотите ещё карту? y - Да, n - нет '));
 
     rl.on('line', (answer) => {
-        //сделаем карту игроку либо прекращаем
         if (answer === 'y') {
           let cardUser = getCard();
           player.push(cardUser);
 
-          console.log('Игрок взял карту: ' + cardUser);
-          console.log('Сумма карт у игрока: ' + getSum(player));
+          console.log(`\nИгрок взял карту: ${cardUser} \nСумма карт у игрока: ${getSum(player)}\n`);
 
           //проверяем нет ли перебора или выигрыша
           sum = getSum(player);
           if (sum > 21) {
-            log('Перебор ' + getStatus(), '0:1');
+            log('Перебор\n' + getStatus(), '0:1');
           } else if (sum == 21) {
-            log('Black Jack! ' + getStatus(), '1:0');
+            log('Black Jack!\n' + getStatus(), '1:0');
           } else if (sum < 21) {
-            console.log(getStatus() + ' Хотите ещё карту? y - Да, другое - нет');
+            console.log(getStatus() + '\nХотите ещё карту? y - Да, другое - нет ');
           }
         } else if (answer === 'n') {
           // игрок закончил брать карты
@@ -58,24 +55,29 @@ if (argv.start) {
             dealer.push(getCard());
           }
           // проверяем результат
-          let sumDealer = getSum(dealer);
-          let sumPlayer = getSum(player);
+          const sumDealer = getSum(dealer);
+          const sumPlayer = getSum(player);
 
           if (sumDealer == 21) {
-            log('У дилера Black Jack! ' + getStatus(), '0:1');
+            log('У дилера Black Jack!\n' + getStatus(), '0:1');
           } else if (sumDealer > 21) {
-            log('У дилера Перебор! ' + getStatus(), '1:0');
+            log('У дилера Перебор!\n' + getStatus(), '1:0');
           } else if (sumDealer == sumPlayer) {
-            log('Ничья! ' + getStatus(), '0:0');
+            log('Ничья!\n' + getStatus(), '0:0');
           } else if (sumPlayer > sumDealer) {
-            log('Выигрышь :) ' + getStatus(), '1:0');
+            log('Выигрышь\n' + getStatus(), '1:0');
           } else {
-            log('Проигрышь :( ' + getStatus(), '0:1');
+            log('Проигрышь\n' + getStatus(), '0:1');
           }
         } else {
-          console.error('ERROR: Введите y или n. Хотите ещё карту? y - Да, n - нет');
+          console.error('ERROR: Введите y или n');
         }
     });
+  }
+
+  function getStatus() {
+    return (chalk.yellow(`Дилер: ${dealer.join(', ')} Всего: ${getSum(dealer)}\n` +
+            `Игрок: ${player.join(', ')} Всего: ${getSum(player)}`));
   }
 }
 
@@ -84,15 +86,12 @@ function getRandomInt(min, max) {
 }
 
 function getCard() {
-  let cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  const cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
   return cards [getRandomInt(0, cards.length - 1)];
 }
 
 function getSum(hand) {
-  let sum = 0;
-// сначала считаем все карты кроме тузов
-  for (let i = 0; i<hand.length; i++){
-    let card = hand[i];
+  let sum = hand.reduce((sum, card) => {
     if (card != 'A') {
       if (card == 'J' || card == 'Q' || card =='K') {
         sum = sum +10;
@@ -100,10 +99,6 @@ function getSum(hand) {
         sum = sum + parseInt(card);
       }
     }
-  }
-  //туз — 1 или 11  
-  for (let i = 0; i<hand.length; i++){
-    let card = hand[i];
     if (card == 'A') {
       if (sum > 10) {
         sum = sum +1;
@@ -111,14 +106,20 @@ function getSum(hand) {
         sum = sum + 11;
       }
     }
-  }
+    return sum;
+  }, 0);
   return sum;
 }
 
 function log(message, status) {
-  fs.appendFile('./stat.txt', `${status} (${message})\n`, (err, _) => {
+  fs.appendFile('./stat.txt', `${status};`, (err, _) => {
     if (err) throw err;
   });
-  console.log(message);
+  switch (status) {
+    case '1:0': console.log(chalk.green.bold(message)); break;
+    case '0:0': console.log(chalk.blue.bold(message)); break;
+    case '0:1': console.log(chalk.red.bold(message)); break;
+  }
+  
   rl.close();
 }
