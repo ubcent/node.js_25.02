@@ -54,7 +54,6 @@ class Game {
                     this.userCards.push(Game.getCard());
 
                     state = this.getSituation();
-                    console.log(state.message);
 
                     if (state.playerSum >= 21) {
                         this.dealerGame();
@@ -90,19 +89,19 @@ class Game {
         Отобразить ситуацию за столом. У кого какие карты.
      */
     getSituation() {
-        let dealer = this.machineCards.reduce((prev, curr) => {
+        const dealer = this.machineCards.reduce((prev, curr) => {
             return {m: prev.m + ' ' + curr.name.red, s: prev.s + curr.value};
         }, {m: '', s: 0});
 
-        let player = this.userCards.reduce((prev, curr) => {
+        const player = this.userCards.reduce((prev, curr) => {
             return {m: prev.m + ' ' + curr.name.green, s: prev.s + curr.value};
         }, {m: '', s: 0});
 
-        let message = `Dealer cards: ${dealer.m}. Total: ${dealer.s.toString().red}. ` +
+        const message = `Dealer cards: ${dealer.m}. Total: ${dealer.s.toString().red}. ` +
             `Player cards: ${player.m}. Total: ${player.s.toString().green}.`;
 
         return {
-            message: message,
+            message,
             playerSum: player.s,
             dealerSum: dealer.s,
         }
@@ -115,7 +114,6 @@ class Game {
         this.machineCards.push(Game.getCard());
 
         let state = this.getSituation();
-        console.log(state.message);
 
         if (state.playerSum <= 21) {
             while (state.dealerSum < 17) {
@@ -157,7 +155,7 @@ class Game {
         const flip = {
             u: this.userCards,
             m: this.machineCards,
-            w: w
+            w,
         };
 
         const data = JSON.stringify(flip);

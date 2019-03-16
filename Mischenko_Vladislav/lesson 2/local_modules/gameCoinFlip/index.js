@@ -73,7 +73,7 @@ class Game {
         const flip = {
             u: this.userCoin,
             m: this.machineCoin,
-            w: w,
+            w,
         };
 
         const data = JSON.stringify(flip);
