@@ -1,0 +1,17 @@
+{
+  "name": "hw_3",
+  "version": "1.0.0",
+  "description": "hw-3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muratova",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "html-entities": "^1.2.1",
+    "iconv-lite": "^0.4.24",
+    "request": "^2.88.0"
+  }
+}
