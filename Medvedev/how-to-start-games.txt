@@ -1,4 +1,7 @@
 Hello!
 
-to start the game "Head or tail" just print in your terminal: 
+- to start the game "Head or tail" just print in your terminal: 
 npm run ht.
+
+- to start the game "Head or tail2" just print in your terminal: 
+npm run ht2.
