@@ -1,0 +1,18 @@
+{
+  "name": "hw_3",
+  "version": "1.0.0",
+  "description": "## Домашнее задание 3",
+  "main": "news.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "news": "node news.js",
+    "en": "node translate.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
+  }
+}
