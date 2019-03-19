@@ -11,14 +11,14 @@ var changeMode = false;
 console.log(
     'Для выхода из программы введите qqq\n' +
     'Для смены режима введите chlang\n'
-)
+);
 
 // Создаем основу URL
 const url = urlutils.parse(apiUrl, true);
 //Добавляем ключ API
-url.query.key = apiKey
+url.query.key = apiKey;
 
-var rl = readline.createInterface({
+const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
 });
@@ -35,7 +35,7 @@ const askPhrase = () => {
                 lang.length > intAnsw) {
                 changeMode = false;
                 workMode = intAnsw;
-                process.stdout.write(`${lang[workMode]}: `)
+                process.stdout.write(`${lang[workMode]}: `);
             } else {
                 console.error('Выбран неверный режим работы\nЗакрываюсь');
                 process.exit();
@@ -43,7 +43,7 @@ const askPhrase = () => {
 
         } else if (answ == 'chlang') {
             changeMode = true;
-            var question = `Укажите режим работы\n`;
+            const question = `Укажите режим работы\n`;
             lang.forEach((element, i) => {
                 question += `  ${i}: ${element}\n`;
             });
@@ -60,7 +60,7 @@ const askPhrase = () => {
                 } else {
                     console.error(err);
                 }
-                process.stdout.write(`${lang[workMode]}: `)
+                process.stdout.write(`${lang[workMode]}: `);
             })
         }
     })
