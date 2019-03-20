@@ -5,7 +5,7 @@ const lineReader = require('line-reader');
 
 const LOG_FILE_NAME = './local_modules/gameBlackJack/log.txt';
 
-class  Game {
+class Game {
     constructor() {
         this.machineCards = [];
         this.userCards = [];
@@ -54,7 +54,6 @@ class  Game {
                     this.userCards.push(Game.getCard());
 
                     state = this.getSituation();
-                    console.log(state.message);
 
                     if (state.playerSum >= 21) {
                         this.dealerGame();
@@ -76,9 +75,9 @@ class  Game {
     */
     static getCard() {
         const deck = {
-                names: ['2','3','4','5','6','7','8','9','T','J','Q','K','A'],
-                values: [2,3,4,5,6,7,8,9,10,10,10,10,11],
-            };
+            names: ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'],
+            values: [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11],
+        };
         const i = deck.names.length * Math.random() << 0;
         return {
             name: deck.names[i],
@@ -90,19 +89,19 @@ class  Game {
         Отобразить ситуацию за столом. У кого какие карты.
      */
     getSituation() {
-        let dealer = this.machineCards.reduce( (prev, curr) => {
+        const dealer = this.machineCards.reduce((prev, curr) => {
             return {m: prev.m + ' ' + curr.name.red, s: prev.s + curr.value};
         }, {m: '', s: 0});
 
-        let player = this.userCards.reduce( (prev, curr) => {
+        const player = this.userCards.reduce((prev, curr) => {
             return {m: prev.m + ' ' + curr.name.green, s: prev.s + curr.value};
         }, {m: '', s: 0});
 
-        let message = `Dealer cards: ${dealer.m}. Total: ${dealer.s.toString().red}. ` +
-                      `Player cards: ${player.m}. Total: ${player.s.toString().green}.`;
+        const message = `Dealer cards: ${dealer.m}. Total: ${dealer.s.toString().red}. ` +
+            `Player cards: ${player.m}. Total: ${player.s.toString().green}.`;
 
         return {
-            message: message,
+            message,
             playerSum: player.s,
             dealerSum: dealer.s,
         }
@@ -115,9 +114,8 @@ class  Game {
         this.machineCards.push(Game.getCard());
 
         let state = this.getSituation();
-        console.log(state.message);
 
-        if(state.playerSum <= 21) {
+        if (state.playerSum <= 21) {
             while (state.dealerSum < 17) {
                 this.machineCards.push(Game.getCard());
                 state = this.getSituation();
@@ -128,17 +126,17 @@ class  Game {
         let message = 'Your win!';
         let w = 'u';
 
-        if(state.playerSum === state.dealerSum) {
+        if (state.playerSum === state.dealerSum) {
             message = 'Draw game!';
             w = 'd';
         }
 
-        if(state.playerSum > 21) {
+        if (state.playerSum > 21) {
             message = 'Your lose!';
             w = 'u';
         }
 
-        if ( (state.dealerSum > state.playerSum) && (state.dealerSum <= 21) ){
+        if ((state.dealerSum > state.playerSum) && (state.dealerSum <= 21)) {
             message = 'Your lose!';
             w = 'm';
         }
@@ -157,12 +155,12 @@ class  Game {
         const flip = {
             u: this.userCards,
             m: this.machineCards,
-            w: w
+            w,
         };
 
         const data = JSON.stringify(flip);
         fs.appendFile(LOG_FILE_NAME, data + '\n', (err) => {
-            if(err) throw err;
+            if (err) throw err;
         });
     }
 
@@ -177,7 +175,7 @@ class  Game {
         lineReader.eachLine(LOG_FILE_NAME, (line, last) => {
             let flip = JSON.parse(line);
 
-            if(flip.w === 'u') {
+            if (flip.w === 'u') {
                 winnerCounter++;
             } else if (flip.w === 'd') {
                 drawCounter++;
@@ -185,11 +183,11 @@ class  Game {
 
             totalCounter++;
 
-            if(last){
+            if (last) {
                 console.log('Your won %s times and got draw %s times at %s games.', winnerCounter, drawCounter, totalCounter);
 
                 fs.unlink(LOG_FILE_NAME, (err) => {
-                    if(err) throw err;
+                    if (err) throw err;
                 });
             }
         });
