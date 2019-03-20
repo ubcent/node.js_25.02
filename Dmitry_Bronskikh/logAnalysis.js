@@ -18,7 +18,7 @@ fs.stat(argv['f'], (err) => {
     } else {
         fs.readFile(argv['f'], (err, data) => {
             if (err) throw err;
-            const array = (data.toString().split("\n"));
+            const array = (data.toString().split('\n'));
             let win = 0, loss = 0;
             array.pop();
             for (el of array) {
@@ -32,4 +32,3 @@ fs.stat(argv['f'], (err) => {
         });
     }
 });
-

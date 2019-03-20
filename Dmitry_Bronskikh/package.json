@@ -6,15 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "game": "node Game.js -f ",
-    "log": "node  logAnalysis.js -f "
+    "log": "node  logAnalysis.js -f ",
+    "translator": "node  translator.js",
+    "news": "node  parser-news.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ansi": "^0.3.1",
+    "axios": "^0.18.0",
     "chalk": "^2.4.2",
-    "minimist": "^1.2.0"
+    "cheerio": "^1.0.0-rc.2",
+    "mail": "^0.2.3",
+    "minimist": "^1.2.0",
+    "nodemailer": "^5.1.1",
+    "request": "^2.88.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

@@ -11,7 +11,7 @@ const argv = minimist(process.argv.slice(2), {
 
 const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
 });
 
 class Game {
@@ -51,9 +51,3 @@ if (typeof (argv['f']) === 'string') {
 } else {
     new Game();
 }
-
-
-
-
-
-
