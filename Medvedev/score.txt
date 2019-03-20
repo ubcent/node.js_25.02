@@ -1,1 +1,0 @@
-Wins: 1. Tries: 5. Percentage of wins: 20%
