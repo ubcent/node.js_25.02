@@ -1,4 +1,4 @@
-##### Домашняя работа за 25.02 - Алексей Жданов
+##### Домашняя работа №2 - Алексей Жданов
 Игра: gameLogAnalysis.js
 Анализатор логов: headsOrTailsGame.js
 
@@ -9,4 +9,15 @@ node gameLogAnalysis.js -l log.txt
 Запуск анализатора логов:
 ```
 node headsOrTailsGame.js -l log.txt
+```
+
+##### Домашняя работа №3 - Алексей Жданов
+Парсер сайта https://www.pravda.ru/news/: siteParser.js
+```
+node siteParser.js
+```
+
+Консольный Яндекс-переводчик: consoleTranslater.js
+```
+node consoleTranslater.js
 ```
