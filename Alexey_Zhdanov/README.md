@@ -4,11 +4,11 @@
 
 Запуск игры:
 ```
-node gameLogAnalysis.js -l log.txt
+node headsOrTailsGame.js -l log.txt
 ```
 Запуск анализатора логов:
 ```
-node headsOrTailsGame.js -l log.txt
+node gameLogAnalysis.js -l log.txt
 ```
 
 ##### Домашняя работа №3 - Алексей Жданов
