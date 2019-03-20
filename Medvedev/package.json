@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "ht": "node ./games/headsortails",
+    "ht2": "node ./games/headsortails2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
