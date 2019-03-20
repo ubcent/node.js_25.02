@@ -1,0 +1,17 @@
+{
+  "name": "lesson-3",
+  "version": "1.0.0",
+  "description": "You have created a blank project. This is really a blank project! This is the only file.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dz-31.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "readline": "^1.3.0",
+    "request": "^2.88.0"
+  }
+}
