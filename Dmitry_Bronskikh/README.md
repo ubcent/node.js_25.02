@@ -15,3 +15,11 @@
 
         node  translator.js
         npm run translator
+
+#
+Показ новостей с использованием express
+
+Команда для запуска:
+
+        node  lesson-4/app.js
+        npm run news-express
