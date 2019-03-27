@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <title>Урок 4</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg header">
+        <h2>Урок 4, express и hbs</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div id="menu-place">
+          <div>
+            <h4>Меню</h4>
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-action"><a href="/">Общие новости</a></li>
+              <li class="list-group-item list-group-item-action"><a href="/habr">С хабра</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-md">
+        <div id="login-place">
+          <div>
+            {{#each news}}
+            <h3>{{this.title}}</h3>
+            <p>{{this.content}}</p>
+            <a href="{{this.href}}"><button type="submit" class="btn btn-primary">Смотреть в источнике</button></a>
+            <hr>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
