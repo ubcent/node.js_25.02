@@ -1,0 +1,42 @@
+<script type="text/javascript" src="handlebars/dist/handlebars.js"></script>
+
+<select id="src">
+    <option itemid="0"></option>
+    <option itemid="1">RBC</option>
+    <option itemid="2">HABR</option>
+</select>
+
+<div id="content-placeholder">
+</div>
+
+
+<script>
+    let settings = {
+        src: 0,
+        count: 5,
+    }
+
+    const sendRequest = () => {
+        let xhr = new XMLHttpRequest();
+        let url = "/news";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                document.getElementById("content-placeholder").innerHTML = xhr.responseText;
+            }
+        };
+        let data = JSON.stringify(settings);
+        xhr.send(data);
+    }
+
+    window.onload = () => {
+        const srcObj = document.getElementById("src");
+        settings.src = srcObj.selectedIndex;
+
+        srcObj.onchange = (e) => {
+            settings.src = e.target.selectedIndex;
+            sendRequest();
+        };
+    };
+</script>
