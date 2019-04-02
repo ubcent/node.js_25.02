@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <base href="/" />
+    <link rel="stylesheet" href="assets/main.css" />
+  </head>
+  <body>
+      <form method="POST">
+          <label>Добавление дела</label><br>
+          <input type="text" name="tit" placeholder="Заголовок дела"><br>
+          <textarea name="descr" placeholder="Описание дела"></textarea><br>
+          <button type="submit">Добавить</button>
+      </form>
+
+      <h1>{{title}}</h1>
+      {{#each todolist}}
+        <div class="todolist">
+          <h2>{{this.title}}</h2>
+          <p>{{this.descr}}</a>
+        </div>
+      {{/each}}
+  </body>
+</html>
