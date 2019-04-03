@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>TODO</title>
+</head>
+<body>
+    <div class ="container">
+        <label for="exampleInputEmail1">Enter TODO Item</label>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="new-task-name" placeholder="Enter item name" value = "new task name">
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="new-task-desc" placeholder="Enter item desc" value = "new task desc">
+            </div>            
+        </div>
+        <hr>                      
+        <button class="btn btn-primary" id="create-new-task">create</button>
+        <hr>
+        <h3 id="task-desc">task desc</h3>
+        <hr>
+        <div class = "row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>title</th>
+                        <th>edit</th>
+                        <th>delete</th>
+                        <th>show</th>
+                    </tr>
+                </thead>
+                <tbody id="todo-list">
+                <% for(let i = 0; i < todoList.length; i++) { %>
+                    <tr id="<%= todoList[i].id %>">
+                        <td><%= todoList[i].name %></td>
+                        <td><button type="button" class="btn btn-warning" onclick="editTask('<%= todoList[i].id %>')">edit</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="deleteTask('<%= todoList[i].id %>')">delete</button></td>
+                        <td><button type="button" class="btn btn-success" onclick="showTask('<%= todoList[i].id %>')">show</button></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+        function addTaskToTable(data) {
+            console.log(data)
+            if (data.status === 'success') {
+                data.data.forEach((obj) => {
+                    $('#todo-list').append(`
+                        <tr id="${obj._id}">
+                            <td>${obj.name}</td>
+                            <td><button type="button" class="btn btn-warning" onclick="editTask('${obj._id}')">edit</button></td>
+                            <td><button type="button" class="btn btn-danger" onclick="deleteTask('${obj._id}')">delete</button></td>
+                            <td><button type="button" class="btn btn-success" onclick="showTask('${obj._id}')">show</button></td>
+                        </tr>
+                    `)
+                })
+            }
+        }
+
+        function removeTaskFromTable(data) {
+            console.log(data)
+            if (data.status === 'success') {
+                $(`#${data.data}`).html('');
+            }
+        }
+
+        function showDesc(data) {
+            if (data.status === 'success') {
+                $(`#task-desc`).html(data.data[0].desc);
+            }   
+        }
+        function editTaskFromTable(data) {
+            console.log(data);
+            if (data.status === 'succes') {
+                
+            }
+        }
+
+        $('#create-new-task').click(() => {
+            let taskName = $('#new-task-name').val();
+            let taskDesc = $('#new-task-desc').val();
+
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000/',
+                data: {
+                    action : 'create',
+                    taskName : taskName,
+                    taskDesc : taskDesc
+                },
+                success: addTaskToTable,
+                error : showError,
+                dataType: 'json'
+            });
+        })
+
+        function showError(data) {
+            console.log('error')
+            console.log(data)
+        }
+
+        function editTask(id) {
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000/',
+                data: {
+                    action : 'edit',
+                    id : id
+                },
+                success: editTaskFromTable,
+                error : showError,
+                dataType: 'json'
+            });
+            
+        }
+        
+
+        function showTask(id) {
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000/',
+                data: {
+                    action : 'show',
+                    id : id
+                },
+                success: showDesc,
+                error : showError,
+                dataType: 'json'
+            });
+        }
+
+        function deleteTask(id) {
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:3000/',
+                data: {
+                    action : 'delete',
+                    id : id
+                },
+                success: removeTaskFromTable,
+                error : showError,
+                dataType: 'json'
+            });
+        }
+        
+    </script>
+
+    
+    
+</body>
+</html>
