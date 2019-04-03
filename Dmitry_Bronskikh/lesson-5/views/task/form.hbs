@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{header}}</title>
+</head>
+<body>
+    <div>
+        <h2>{{header}}</h2>
+
+        <form method="post">
+            <input type="text" name="title" value = "{{task.title}}" placeholder="заголовок" required > <br>
+            <textarea name="discr" id="" cols="30" rows="10" placeholder="описание..." required>{{task.discr}}</textarea> <br>
+            <input type="submit">
+        </form>
+
+    </div>
+</body>
+</html>
