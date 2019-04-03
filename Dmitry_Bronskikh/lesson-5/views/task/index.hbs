@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{header}}</title>
+</head>
+<body>
+    <div>
+        <h2>{{header}}</h2>
+        <a href="/task/create" data-method="POST"><button>Добавить задачу</button></a>
+        <ul>
+        {{#each tasks}}
+            <li>
+                <a href="/task/{{id}}">
+                    {{id}} | {{title}} | {{discr}}
+                </a>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+</body>
+</html>
