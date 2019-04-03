@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>HW 4</title>
+
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{headline}}</h1>
+      <form action="/news" method="post" class="input-group">
+        <div class="input-group">
+          <select class="custom-select" id="inputGroupSelect04" name="portal">
+            <option selected>Выберите портал...</option>
+            <option value="rbc">РБК</option>
+            <option value="ngs">НГС</option>
+            <option value="my">MY</option>
+          </select>
+          <input class="form-control" placeholder="Количество новостей" name="number">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary">Загрузить</button>
+          </div>
+        </div>
+      </form>
+      <br>
+      {{#if newsFlag}}
+        {{> news }}
+      {{/if}}
+      {{#if item}}
+        {{> item }}
+      {{/if}}
+      {{#if userNews}}
+        {{> myNews }}
+      {{/if}}
+    </div>
+  </body>
+</html>
