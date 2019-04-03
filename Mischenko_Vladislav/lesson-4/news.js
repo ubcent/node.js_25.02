@@ -19,7 +19,7 @@ app.set('view engine', 'hbs');
 app.set('news', path.resolve(__dirname, 'views'));
 
 function sendRequest(url, selector, category) {
-    let allNews = [];
+    const allNews = [];
     let id = 0;
     request(url, (err, res, html) => {
         if (err) console.log(`Не удалось получить страницу из за следующей ошибки:  ${err}`);
@@ -86,7 +86,7 @@ app.get('/news-list', (req, res) => {
     }
 
     sendRequest(urlYandex[cookieNewsFrom][0], urlYandex[cookieNewsFrom][1], cookieNewsFrom);
-    jsonNews = JSON.parse(fs.readFileSync(`news/${cookieNewsFrom}.json`, 'utf8'));
+    const jsonNews = JSON.parse(fs.readFileSync(`news/${cookieNewsFrom}.json`, 'utf8'));
     res.render('news', jsonNews);
 });
 

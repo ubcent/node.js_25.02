@@ -44,13 +44,13 @@ function getTodo(req, res) {
 function addTodo(req, res) {
     const unixtime = Math.round(new Date().getTime() / 1000);
 
-    let tasks = Task.add({
+    const task = Task.add({
         title: req.body.tit,
         descr: req.body.descr,
         datka: unixtime
     });
 
-    tasks.then(
+    task.then(
         result => {
             console.log(result);
             getTodo(req, res);
