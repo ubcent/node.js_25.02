@@ -1,0 +1,11 @@
+<form id="MyForm" method="post" action="/users/edit/{{user._id}}">
+    <h4>Данные редактируемого Пользователя</h4>
+    
+    Имя Пользователя:</br>
+    <input name="name" type="text" value="{{user.name}}"/></br>
+    
+    Возраст Пользователя:</br>
+    <input name="age" type="text" value="{{user.age}}"/></br></br>
+
+    <input type="submit" value="Редактировать"/>
+</form>
