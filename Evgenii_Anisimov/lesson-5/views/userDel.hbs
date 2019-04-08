@@ -1,0 +1,10 @@
+<form id="MyForm" method="post" action="/users/del/{{user._id}}">
+    <h4>Данные удаляемого Пользователя</h4>
+    
+    <div class="userDel">
+        <h1>{{user.name}}</h1>
+        <p>{{user.age}}</p>
+    </div>
+    
+    <input type="submit" value="Удалить"/>
+</form>
