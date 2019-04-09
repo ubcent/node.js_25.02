@@ -1,0 +1,37 @@
+<html>
+<head>
+    <base href="/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+<div class="hero">
+    <div class="container">
+        <h1 class="text-center">My TodoList</h1>
+        <p class="lead text-center">You can manage your tasks here</p>
+        <div class="row">
+            <form class="col-8 mx-auto text-center" method="post" action="/add">
+                <input name="task" type="text" class="form-control"
+                       placeholder="New task" value="{{textTask}}">
+                <button type="submit"
+                        class="btn btn-primary mt-3">Add task
+                </button>
+            </form>
+        </div>
+        <h2 class="text-center mt-3 pb-2">View and edit your tasks</h2>
+        <div class="row">
+            <ul id="list" class="list col-lg-6 col-8 mx-auto">
+                {{#each tasks}}
+                    <li class="pt-2 pb-2"><span class="{{status}}"><a href="/update/{{id}}">{{content}}</a></span>
+                        {{#if status}}<a href="/complete/{{id}}" class="btn btn-success ml-2">Mark as done</a>{{/if}}
+                        <a href="/remove/{{id}}" class="btn btn-danger ml-2">Delete</a>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

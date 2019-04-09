@@ -1,0 +1,23 @@
+<html>
+<head>
+    <base href="/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <title></title>
+</head>
+<body>
+<div class="hero">
+    <div class="container">
+        <h1 class="text-center">My TodoList</h1>
+        <p class="lead text-center">Update task {{textTask.id}}</p>
+        <div class="row">
+            <form class="col-8 mx-auto text-center" method="post" action="/update">
+                <input name="task" type="text" class="form-control"
+                       placeholder="Enter task" value="{{textTask.content}}"><span><button type="submit"
+                                                                                           class="btn btn-primary mt-3">Submit</button></span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
