@@ -8,35 +8,47 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>HW 4</title>
+    <title>HW 4-6</title>
 
   </head>
   <body>
     <div class="container">
-      <h1>{{headline}}</h1>
-      <form action="/news" method="post" class="input-group">
-        <div class="input-group">
-          <select class="custom-select" id="inputGroupSelect04" name="portal">
-            <option selected>Выберите портал...</option>
-            <option value="rbc">РБК</option>
-            <option value="ngs">НГС</option>
-            <option value="my">MY</option>
-          </select>
-          <input class="form-control" placeholder="Количество новостей" name="number">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary">Загрузить</button>
+      {{#if authFlag}}
+        {{> auth}}
+      {{/if}}
+      {{#if signFlag}}
+        {{> signUp}}
+      {{/if}}
+
+      <a href="/auth" class="btn btn-primary">Войти</a>
+      <a href="/signUp" class="btn btn-success">Зарегистрироваться</a>
+
+      {{#if contentFlag}}
+        <h1>{{headline}}</h1>
+        <form action="/news" method="post" class="input-group">
+          <div class="input-group">
+            <select class="custom-select" id="inputGroupSelect04" name="portal">
+              <option selected>Выберите портал...</option>
+              <option value="rbc">РБК</option>
+              <option value="ngs">НГС</option>
+              <option value="my">MY</option>
+            </select>
+            <input class="form-control" placeholder="Количество новостей" name="number">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary">Загрузить</button>
+            </div>
           </div>
-        </div>
-      </form>
-      <br>
-      {{#if newsFlag}}
-        {{> news }}
-      {{/if}}
-      {{#if item}}
-        {{> item }}
-      {{/if}}
-      {{#if userNews}}
-        {{> myNews }}
+        </form>
+        <br>
+        {{#if newsFlag}}
+          {{> news }}
+        {{/if}}
+        {{#if item}}
+          {{> item }}
+        {{/if}}
+        {{#if userNews}}
+          {{> myNews }}
+        {{/if}}
       {{/if}}
     </div>
   </body>

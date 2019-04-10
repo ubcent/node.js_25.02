@@ -6,6 +6,9 @@ module.exports = async function render(req, res, portal, newsFlag) {
     news.length = portal.number;
     
     res.render('main', {
+        authFlag: false,
+        signFlag: false,
+        contentFlag: true,
         headline: `Новости с портала - ${portal.name}`,
         newsFlag,
         item: !newsFlag,

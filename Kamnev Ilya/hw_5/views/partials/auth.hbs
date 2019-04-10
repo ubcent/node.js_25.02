@@ -1,0 +1,29 @@
+<form action="/auth" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input name="email" type="email" class="form-control username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input name="password" type="password" class="form-control password" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <button id="btnAuth" class="btn btn-primary">Sign in</button>
+    <span>-OR-</span>
+    <a href="auth/vkontakte" class="btn btn-info">Connect with Vkontakte</a>
+</form>
+<!-- почему через fetch редиректа не происходит, Status Code 304. А через форму нормально работает.
+<script>
+    document.getElementById('btnAuth').addEventListener('click', function () {
+        fetch('./auth', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: exampleInputEmail1.value,
+                password: exampleInputPassword1.value,
+            }),
+        });
+    });
+</script>
+-->
