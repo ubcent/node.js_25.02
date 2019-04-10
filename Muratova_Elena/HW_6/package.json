@@ -1,0 +1,31 @@
+{
+  "name": "hw_5",
+  "version": "1.0.0",
+  "description": "HW5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muratova",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "consolidate": "^0.15.1",
+    "cookie-parser": "^1.4.4",
+    "create-hmac": "^1.1.7",
+    "events": "^3.0.0",
+    "ever": "0.0.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "hmac": "^1.0.1",
+    "i": "^0.3.6",
+    "jade": "^1.11.0",
+    "jsdom": "^14.0.0",
+    "mysql": "^2.16.0",
+    "npm": "^6.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0"
+  }
+}

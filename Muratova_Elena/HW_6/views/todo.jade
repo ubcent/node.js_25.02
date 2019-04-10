@@ -1,0 +1,88 @@
+doctype html(lang='ru')
+head
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/style.css')   
+    title Todo List
+
+
+
+  body
+    form#myDIV.header(action='/add', method='post')
+      h2 My To Do List
+      input#myInput(type='text', placeholder='Title...', name='newTask')
+      input.addBtn(type='submit', value='Добавить')
+
+    ul#myUL 
+      - each user in heroList
+        li
+          - if (user.done=='Да') {
+            form(action='/completed', method='post' class='form')
+              input(type='checkbox', name='checki' checked='checked' class='check' id= user.id)
+              p(class='completed checked' name='completed1')= user.task
+            form(action='/update', method='post' class='update_form' )
+             button(class='update' id= user.id onclick='return false;') Изменить
+            form(action='/delete', method='post' class='delete_form' onsubmit='return false;')
+              button(class='delete' id= user.id) Удалить
+          - } else {
+            form(action='/completed', method='post' class='form')
+              input(type='checkbox', name='checki' class='check' id= user.id)
+              p(name='completed1' class='completed')= user.task
+            form(action='/update', method='post' class='update_form')
+              button(class='update' id= user.id onclick='return false;') Изменить
+            form(action='/delete', method='post' class='delete_form' onsubmit='return false;')
+              button(class='delete' id= user.id) Удалить
+          - }
+        br
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js')
+    script.
+      $(document).ready(function() {
+        $( ".check" ).click(function() {
+          var editTitle = this.id;
+          var checki = this.checked;
+          if(checki == true) {
+            $(this).siblings('p').addClass('checked');
+          } else {
+            $(this).siblings('p').removeClass('checked');
+          }
+          $.ajax({
+              type: "POST",
+              url: "http://localhost:3000/completed" ,
+              data: {'id': editTitle, 'Check': checki}
+          });
+        });
+
+        $( ".update" ).click(function() {
+          let form = $(this).parent();
+          let p = $(this).parent().siblings('.form').children('.completed');
+          form.append('<input type="text" id=' + this.id + ' value=' + p.text() + ' name="newText" class="NewTextTask"><button type="button" class="btn_NewTextTask">Менять</button>');
+          let newInput = $(this).siblings('.NewTextTask');
+          p.remove();
+          let id = this.id;
+          $( ".btn_NewTextTask" ).click(function() {
+            $.ajax({
+              type: "POST",
+              url: "http://localhost:3000/update" ,
+              data: {'newText': newInput.val(), 'id': id}
+            });
+            location.reload();
+          })
+        });
+
+       
+
+
+        $( ".delete" ).click(function() {
+          let id = this.id;
+          $.ajax({
+              type: "POST",
+              url: "http://localhost:3000/delete" ,
+              data: {'id': id },
+              success: function(){
+                alert('Load was performed.');
+              }
+          });
+          location.reload();
+        });
+      });
+

@@ -1,0 +1,17 @@
+doctype html(lang='ru')
+head
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='/style.css')   
+    title Логин
+body
+    base(href='/')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css', integrity='sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS', crossorigin='anonymous')
+    link(rel='stylesheet', type='text/css', href='assets/style.css')
+    .hero
+      .container
+        h1.text-center Login to view your tasks
+        .row
+          form.col-8.mx-auto.text-center(method='post', action='/auth')
+            input.form-control.mt-3.mb-3(name='username', type='text', placeholder='Enter username')
+            input.form-control.mt-3.mb-3(name='password', type='text', placeholder='Enter password')
+            button.btn.btn-primary(type='submit') Login
