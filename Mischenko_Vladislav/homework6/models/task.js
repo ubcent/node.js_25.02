@@ -13,7 +13,7 @@ class Task {
                     if (err) {
                         reject(err);
                     }
-                    resolve(rows);
+                    resolve({...rows[0]});
                 });
             });
         });
@@ -32,8 +32,7 @@ class Task {
                     if (err) {
                         reject(err);
                     }
-                    resolve(rows);
-                    console.log(rows);
+                    resolve({...rows[0]});
                 });
             });
         });
@@ -53,7 +52,6 @@ class Task {
                         reject(err);
                     }
                     resolve(result);
-                    console.log(result.insertId);
                 });
             });
         });
@@ -74,7 +72,6 @@ class Task {
                         reject(err);
                     }
                     resolve(result);
-                    console.log(result);
                 });
             });
         });
@@ -94,7 +91,6 @@ class Task {
                         reject(err);
                     }
                     resolve(result);
-                    console.log(result);
                 });
             });
         });
@@ -114,7 +110,6 @@ class Task {
                         reject(err);
                     }
                     resolve(result);
-                    console.log(result);
                 });
             });
         });
@@ -134,7 +129,6 @@ class Task {
                         reject(err);
                     }
                     resolve(result);
-                    console.log(result);
                 });
             });
         });

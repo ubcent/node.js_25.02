@@ -22,8 +22,7 @@ class User {
                     if (err) {
                         reject(err);
                     }
-                    resolve(rows);
-                    console.log(rows);
+                    resolve({...rows[0]});
                 });
             });
         });
@@ -42,18 +41,16 @@ class User {
                     if (err) {
                         reject(err);
                     }
-                    resolve(rows);
-                    console.log(rows);
+                    resolve({...rows[0]});
                 });
             });
         });
     }
 
     static encryptPass(password) {
-        var mykey = crypto.createCipher('aes-128-cbc', 'mypassword');
-        var mystr = mykey.update(password, 'utf8', 'hex')
-        mystr += mykey.final('hex');
-        return mystr;
+        const mykey = crypto.createCipher('aes-128-cbc', 'mypassword');
+        const mystr = mykey.update(password, 'utf8', 'hex');
+        return mystr + mykey.final('hex');
     }
 }
 
