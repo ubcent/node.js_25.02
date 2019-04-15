@@ -1,0 +1,31 @@
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addTask {
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.complete {
+    margin-right: 5px;
+}
