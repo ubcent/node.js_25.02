@@ -1,0 +1,14 @@
+{
+  "name": "dz2",
+  "version": "1.0.0",
+  "description": "DZ lesson 2",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ThreeD",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}

@@ -1,0 +1,35 @@
+<html lang="ru">
+<head>
+    <base href="/">
+    <link rel="stylesheet" href="assets/news.css">
+    <title></title>
+</head>
+<body>
+<div>
+    <h1>News</h1>
+
+    <form action="/news-list">
+        <label> Выберете категорию
+            <select name="resource">
+                <option value="sport">Спорт</option>
+                <option value="business">Бизнес</option>
+                <option value="politic">Политика</option>
+            </select>
+        </label>
+        <button>Показать</button>
+    </form>
+
+    <div id="container" class="news">
+        {{#each this}}
+            <div class="post">
+                <p>ID: {{id}}</p>
+                <p><b>Категория:</b> {{category}}</p>
+                <h2>{{title}}</h2>
+                <div>{{description}}</div>
+                <p>{{time}}</p>
+            </div>
+        {{/each}}
+    </div>
+</div>
+</body>
+</html>

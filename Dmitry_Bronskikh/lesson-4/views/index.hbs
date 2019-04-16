@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{header}}</title>
+</head>
+<body>
+    <div>
+        <h2>{{header}}</h2>
+        <ul>
+        {{#each content}}
+            <li><a href = "/news/{{@index}}">{{title}}</a></li>
+        {{/each}}
+        </ul>
+    </div>
+</body>
+</html>

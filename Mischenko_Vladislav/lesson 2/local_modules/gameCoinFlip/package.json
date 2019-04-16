@@ -1,0 +1,12 @@
+{
+  "name": "game",
+  "version": "0.0.1",
+  "description": "Module represents the class of the game 'CoinFlip'.",
+  "main": "index.js",
+  "author": "Vladislav Mischenko",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.3.3",
+    "line-reader": "^0.4.0"
+  }
+}

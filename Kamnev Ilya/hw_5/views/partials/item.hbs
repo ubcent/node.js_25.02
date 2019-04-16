@@ -1,0 +1,27 @@
+<div class="item">
+    <button class="btn btn-primary" onclick="history.back();">Назад</button> <br>
+    <a class="title" href="{{news.href}}">{{news.title}}</a>
+    <p class="content">{{news.content}}</p>
+    <button id="btnSave" type="button" class="btn btn-success">Сохранить</button>
+</div>
+
+<script>
+    document.getElementById('btnSave').addEventListener('click', function () {
+        const title = document.querySelector('.title').innerText,
+              href = document.querySelector('.title').href,
+              content = document.querySelector('.content').innerText;
+        this.setAttribute('disabled', '');
+
+        fetch('./add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                href,
+                content,
+            }),
+        });
+    });
+</script>

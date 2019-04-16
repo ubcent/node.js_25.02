@@ -1,0 +1,29 @@
+<div class="form-group">
+    <label for="exampleInputName">Name</label>
+    <input type="name" class="form-control name" id="exampleInputName" placeholder="Name">
+</div>
+<div class="form-group">
+    <label for="exampleInputEmail">Email address</label>
+    <input type="email" class="form-control username" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword">Password</label>
+    <input type="password" class="form-control password" id="exampleInputPassword" placeholder="Password">
+</div>
+<button id="btnAuth" class="btn btn-primary">Sign Up</button>
+
+<script>
+    document.getElementById('btnAuth').addEventListener('click', function () {
+        fetch('./signUp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: exampleInputName.value,
+                email: exampleInputEmail.value,
+                password: exampleInputPassword.value,
+            }),
+        });
+    });
+</script>

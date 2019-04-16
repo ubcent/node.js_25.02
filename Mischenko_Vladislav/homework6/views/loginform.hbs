@@ -1,0 +1,24 @@
+<html>
+<head>
+    <base href="/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+<div class="hero">
+    <div class="container">
+        <h1 class="text-center">Login to view your tasks</h1>
+        <div class="row">
+            <form class="col-8 mx-auto text-center" method="post" action="/user">
+                <input name="username" type="text" class="form-control mt-3 mb-3"
+                       placeholder="Enter username">
+                <input name="password" type="text" class="form-control mt-3 mb-3"
+                       placeholder="Enter password">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

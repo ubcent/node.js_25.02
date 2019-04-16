@@ -1,0 +1,16 @@
+{
+  "name": "lesson3",
+  "version": "1.0.0",
+  "description": "homework of lesson 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vladislav Mischenko",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "readline": "^1.3.0",
+    "request": "^2.88.0"
+  }
+}

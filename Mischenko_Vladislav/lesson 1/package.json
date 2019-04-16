@@ -1,0 +1,13 @@
+{
+  "name": "node-gb",
+  "version": "1.0.0",
+  "description": "example",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "openfile": "node index.js",
+    "server": "node server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
