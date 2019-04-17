@@ -60,7 +60,7 @@ app.all('/user', mustBeAuthenticated);
 app.all('/user/*', mustBeAuthenticated);
 
 app.get('/user', (req, res) => {
-  res.send('User');
+  res.send('User'); // SOAP
 });
 
 app.get('/user/settings', (req, res) => {
