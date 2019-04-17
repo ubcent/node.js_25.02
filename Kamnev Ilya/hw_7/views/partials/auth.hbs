@@ -1,0 +1,68 @@
+<div class="form-group">
+    <label for="exampleInputUser1">User name</label>
+    <input name="username" type="username" class="form-control username" id="exampleInputUser1"
+        placeholder="Enter name">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input name="password" type="password" class="form-control password" id="exampleInputPassword1"
+        placeholder="Password">
+</div>
+<button id="btnAuth" class="btn btn-primary">Sign in</button>
+<button id="btnTask" class="btn btn-primary">Tasks</button>
+<span>-OR-</span>
+<a href="signUp" class="btn btn-info">sign Up</a>
+
+<script>
+    document.getElementById('btnAuth').addEventListener('click', function () {
+        fetch('./auth', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: exampleInputUser1.value,
+                password: exampleInputPassword1.value,
+            }),
+        })
+        .then((res) => {
+            return res.json();
+        })
+        .then((myJson) => {
+            const { accessToken, refreshToken } = myJson;
+            localStorage.clear();
+            localStorage.setItem('token', accessToken);
+            localStorage.setItem('refresh', refreshToken);
+        })
+    });
+
+    document.getElementById('btnTask').addEventListener('click', function () {
+        fetch('./tasks', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            },
+        })
+        .then((res) => {
+            if(res.status === 401) {
+                fetch('./refresh', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem('refresh'),
+                    },
+                })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((myJson) => {
+                    const { accessToken, refreshToken } = myJson;
+                    localStorage.clear();
+                    localStorage.setItem('token', accessToken);
+                    localStorage.setItem('refresh', refreshToken);
+                })
+            }
+        })
+    });
+</script>
