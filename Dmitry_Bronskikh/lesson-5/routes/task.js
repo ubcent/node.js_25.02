@@ -25,7 +25,7 @@ router.post('/create', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
-    isIdTask(id);
+    redirectIfWrongId(id, res);
     const task = {
         header: `Задача ${id}`,
         task: await Task.getOn(id),
@@ -35,14 +35,14 @@ router.get('/:id', async (req, res) => {
 
 router.get('/delete/:id', async (req, res) => {
     const id = req.params.id;
-    isIdTask(id);
+    redirectIfWrongId(id, res);
     Task.delete(id);
     res.redirect('..');
 });
 
 router.get('/update/:id', async (req, res) => {
     const id = req.params.id;
-    isIdTask(id);
+    redirectIfWrongId(id, res);
     const task = {
         header: 'Редактирование задачи',
         task: await Task.getOn(id),
@@ -52,14 +52,14 @@ router.get('/update/:id', async (req, res) => {
 
 router.post('/update/:id', async (req, res) => {
     const id = req.params.id;
-    isIdTask(id);
+    redirectIfWrongId(id, res);
     const updateTask = req.body;
     updateTask.id = id;
     await Task.update(updateTask);
     res.redirect(`/task/${id}`);
 });
 
-const isIdTask = (id) => {
+const redirectIfWrongId = (id, res) => {
     if (!Number.isInteger(+id)) {
         res.redirect('/task');
     }

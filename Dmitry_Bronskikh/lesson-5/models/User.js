@@ -1,8 +1,8 @@
 const getQuery = require('./DBHelper');
 
-const tableName = 'tasks';
+const tableName = 'users';
 
-class Task {
+class User {
 
     static getAll() {
         return getQuery(`SELECT * FROM  ${tableName}`);
@@ -10,6 +10,12 @@ class Task {
 
     static async getOn(id) {
         const [result] = await getQuery(`SELECT * FROM  ${tableName} WHERE id = ?`, id);
+        return result;
+    }
+
+    static async identify(userData) {
+        const [result] = await getQuery(`SELECT * FROM  ${tableName} WHERE username = ? AND password = ?`,
+            [userData.username, userData.password]);
         return result;
     }
 
@@ -28,4 +34,4 @@ class Task {
     }
 }
 
-module.exports = Task;
+module.exports = User;
