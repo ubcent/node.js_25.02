@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <title>ToDo list</title>
+</head>
+<body>
+<div class="container">
+    <h1>ToDo - лист</h1>
+    <div class="list-group">
+        <div class="list-group-item">
+            <span></span>
+            <div class="buttons">
+                <button class="btn btn-outline-secondary complete" id="complete_btn" name="complete" type="button">
+                    Завершить
+                </button>
+                <button class="btn btn-outline-danger delete" id="delete_btn" name="delete" type="button">Удалить
+                </button>
+            </div>
+        </div>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="taskText">Введите текст задания</label>
+            <input class="form-control" id="taskText" name="newTask" type="text">
+            <button class="btn btn-outline-primary addTask" id="add_btn" type="button">Добавить</button>
+        </div>
+    </form>
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

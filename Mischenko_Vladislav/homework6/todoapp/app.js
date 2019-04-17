@@ -9,7 +9,6 @@ const session = require('express-session')
 const passportmodule = require('../passport/passport');
 const passport = passportmodule.passport;
 const authHandler = passportmodule.authHandler;
-const crypto = require('crypto');
 
 const app = express();
 
@@ -55,8 +54,6 @@ app.get('/user', (req, res) => {
 app.get('/user/:id', (req, res) => {
     const tasks = Task.getAll(req.user._id);
     tasks.then((data) => {
-        let parsedstring = JSON.stringify(data);
-        let json = JSON.parse(parsedstring);
         json.forEach(function (element) {
             if (element.status == 'done') {
                 element.status = null;

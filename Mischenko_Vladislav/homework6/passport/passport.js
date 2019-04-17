@@ -6,7 +6,6 @@ const User = require('../models/user');
 passport.use('local', new LocalStategy(async (username, password, done) => {
     let user = await User.findOne(username);
     let parsedstring = JSON.stringify(user);
-    user = JSON.parse(parsedstring)[0];
 
     if (!user) {
         return done(null, false);
@@ -26,9 +25,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    let user = await User.findById(id);
-    let parsedstring = JSON.stringify(user);
-    user = JSON.parse(parsedstring)[0];
+    const user = await User.findById(id);
     done(null, user);
 });
 
