@@ -1,0 +1,23 @@
+<form id="MyForm" method="post" action="/users">
+    
+    <h4>Данные добавляемого Пользователя</h4>
+    
+    Имя Пользователя:</br>
+    <input name="name" type="text" value=""/></br>
+    
+    Возраст Пользователя:</br>
+    <input name="age" type="text" value=""/></br></br>
+        
+	<input type="submit" value="Добавить"/>	
+</form>
+<ul>  
+	{{#each users}}
+    
+		<li>
+		  {{this.name}} {{this.age}} 
+		      <a href="/users/del/{{this._id}}">Удалить</a> 
+		      <a href="/users/edit/{{this._id}}">Редактировать</a>
+		</li>
+  
+	{{/each}}
+</ul>
