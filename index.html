@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <script src="http://localhost:8888/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <ul id="list"></ul>
+
+  <input placeholder="username" type="text" id="username" /><br/>
+  <textarea placeholder="message" id="text"></textarea><br/><br/>
+  <button id="send">Send</button>
+
+  <script>
+    const $username = document.querySelector('#username');
+    const $list = document.querySelector('#list');
+    const $text = document.querySelector('#text');
+    const $send = document.querySelector('#send');
+
+    const socket = io.connect('http://localhost:8888');
+
+    socket.on('message', (msg) => {
+      const $li = document.createElement('li');
+      $li.textContent = `${msg.username} (${msg.timestamp}): ${msg.text}`;
+      $list.appendChild($li);
+    });
+
+    $send.addEventListener('click', () => {
+      socket.emit('message', {
+        username: $username.value,
+        text: $text.value,
+      });
+    });
+  </script>
+</body>
+</html>
